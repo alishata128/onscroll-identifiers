@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>article-count-on-scroll</title>
+    <style>
+        :root {
+            --percent: 0%
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .counter {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: #222;
+            border-radius: 50%;
+            z-index: 9999;
+        }
+
+        .counter::before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            content: "";
+            background: conic-gradient(springgreen var(--percent), transparent var(--percent));
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            filter: blur(.5px);
+        }
+
+        .counter::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            content: "×";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70%;
+            height: 70%;
+            background: #222;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 700;
+            border-radius: 50%;
+        }
+
+        .article {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            font-size: clamp(1rem, 2.5vw, 2rem);
+            text-align: justify;
+            font-family: Poppins, sans-serif;
+            padding: 1rem;
+        }
+
+        .scroll-watcher {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="counter"></div>
+    <section>
+        <p class="article">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, voluptas fugiat ad nisi a rerum! Nihil natus
+            voluptatum, rerum laboriosam nostrum quod illum quae delectus corporis optio accusantium? Quam nemo
+            obcaecati architecto sequi. Velit impedit quia inventore, exercitationem unde et sapiente repudiandae quam.
+            Natus quia dolores mollitia similique tenetur numquam quam itaque nisi iure? At molestiae reprehenderit, ad
+            libero nesciunt sed id ex odit voluptate magni assumenda veniam culpa debitis, repellendus quaerat eligendi
+            vel totam, sunt ipsum? Libero magni corporis illo temporibus soluta in necessitatibus quae sed
+            exercitationem iusto similique tempore, est, veritatis, dolores quisquam a nisi esse ipsam recusandae animi
+            minima molestiae obcaecati omnis. Sapiente beatae vero, molestias voluptates perferendis blanditiis velit
+            sequi adipisci eligendi? Doloribus, aspernatur similique mollitia officia quae sint rem, vel nulla eligendi
+            laudantium ut. Deleniti quam dolores dignissimos error nemo fuga quidem saepe qui sequi, adipisci vitae
+            nihil odit quasi placeat blanditiis quo laborum quibusdam amet quisquam assumenda tempora? Maxime distinctio
+            dicta molestiae velit nam nobis a officia labore aperiam, quaerat id autem quae fugiat nostrum voluptatum
+            sapiente in ratione repudiandae? Mollitia, alias ea nostrum sequi a veritatis praesentium corrupti
+            aspernatur voluptas facere pariatur ullam quas! Totam unde facilis cum veniam provident soluta eius ullam
+            omnis cupiditate alias hic nostrum, deleniti quibusdam dolorum, amet quisquam similique ducimus, quo tenetur
+            aspernatur? Laboriosam, veritatis eligendi suscipit aperiam quaerat a debitis quia distinctio natus vero
+            culpa ex itaque magni vitae repellendus reiciendis consectetur fugiat quis explicabo quas rem magnam
+            expedita, nulla fuga? Modi ullam quis magnam laboriosam eligendi. Quae animi deleniti nostrum pariatur
+            inventore voluptates maiores. Odio reiciendis veritatis iste labore incidunt dignissimos excepturi
+            voluptates nulla. Sunt nostrum tempora, distinctio vel magnam ab atque quas ipsa iusto nobis hic,
+            consectetur soluta! Modi perspiciatis odio, quis impedit mollitia voluptatibus quia, porro optio quasi
+            nostrum perferendis qui sunt error eaque alias accusantium cupiditate, nihil laudantium? Accusantium totam,
+            numquam provident dolore id voluptas impedit dolorum culpa eaque possimus error eum laborum accusamus illum
+            vitae beatae corporis non neque. Harum ex beatae doloribus eaque sunt architecto nobis aperiam, minus
+            adipisci corrupti aliquid debitis sed velit excepturi non ratione necessitatibus earum corporis. Qui
+            blanditiis aliquam unde, veritatis sed hic, obcaecati ratione, deserunt quas soluta aspernatur doloremque?
+            Exercitationem, illum vel hic qui dolorem porro quaerat architecto, voluptate non incidunt aliquam veniam
+            earum assumenda cum dignissimos voluptates odit est doloremque. Iusto porro earum animi? Sed quia, nam ut
+            qui earum mollitia voluptate deserunt sequi tenetur, aliquid eligendi dolorum ab fuga eum modi deleniti
+            iure. Necessitatibus, consequatur quia quae, commodi explicabo repellat voluptatibus odit dolor repudiandae
+            voluptatum beatae asperiores quisquam! Laudantium, excepturi doloribus unde similique corporis animi
+            repellendus nostrum repellat perferendis quos voluptate itaque, inventore quis quas aperiam accusamus maxime
+            fuga est alias illum! Ut, rerum iste nam exercitationem corrupti quo, odit ratione hic debitis earum
+            eligendi accusamus? Accusantium iste odio fugit natus maxime. Porro dignissimos laboriosam quas placeat,
+            nobis quibusdam ullam sit rem ab corrupti, eius corporis soluta cumque eum labore repellat assumenda
+            exercitationem eaque inventore eligendi fuga obcaecati. Unde reprehenderit saepe aperiam iure ex?
+        </p>
+    </section>
+    <script>
+        const scrollWatcher = document.createElement("div")
+        scrollWatcher.className = "scroll-watcher"
+        scrollWatcher.setAttribute("data-scroll-watcher", "")
+        document.querySelector(".counter").before(scrollWatcher)
+        window.onwheel = function (e) {
+            totalHeight = document.querySelector("section").getBoundingClientRect().height - innerHeight
+            const percent = (scrollY / totalHeight) * 100
+            document.documentElement.style.setProperty("--percent", percent + "%")
+            // if (calcl >= 100) {
+            //     alert("you finished the article")
+            // }
+
+        }
+        window.onscroll = function (e) {
+            totalHeight = document.querySelector("section").getBoundingClientRect().height - innerHeight
+            const percent = (scrollY / totalHeight) * 100
+            document.documentElement.style.setProperty("--percent", percent + "%")
+            // if (calcl >= 100) {
+            //     alert("you finished the article")
+            // }
+
+        }
+    </script>
+</body>
+
+</html>
